@@ -18,6 +18,15 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@app/*": ["src/*"]}
-  },
+      "@app/*": [
+        "src/*"
+      ],
+      "@app/libs/core-library": [
+        "libs/core-library/src"
+      ],
+      "@app/libs/core-library/*": [
+        "libs/core-library/src/*"
+      ]
+    }
+  }
 }
