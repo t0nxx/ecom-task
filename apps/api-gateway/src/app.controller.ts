@@ -5,11 +5,14 @@ import {
   Param,
   ParseUUIDPipe,
   Post,
+  UseInterceptors,
 } from '@nestjs/common';
 import { AppService } from './app.service';
 import { CreateJobDto } from '@app/libs/contracts/jobs/create-job.dto';
+import { CacheInterceptor } from '@nestjs/cache-manager';
 
 @Controller()
+@UseInterceptors(CacheInterceptor)
 export class AppController {
   constructor(private readonly appService: AppService) {}
 

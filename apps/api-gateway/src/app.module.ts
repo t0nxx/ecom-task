@@ -6,14 +6,17 @@ import { IAppConfig } from '@app/libs/core/config';
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { APP_FILTER } from '@nestjs/core';
-import {
-  ClientProxyFactory,
-  Transport,
-} from '@nestjs/microservices';
+import { CacheModule } from '@nestjs/cache-manager';
+import { ClientProxyFactory, Transport } from '@nestjs/microservices';
 import { SCHEDULER_MICROSERVICE_CONTRACT } from '@app/libs/contracts/microservices/scheduler-microservice';
 
 @Module({
-  imports: [CoreModule],
+  imports: [
+    CoreModule,
+    CacheModule.register({
+      ttl: 30 * 1000, // 30 seconds
+    }),
+  ],
   controllers: [AppController],
   providers: [
     AppService,

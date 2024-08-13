@@ -1,6 +1,6 @@
 import { CreateJobDto } from '@app/libs/contracts/jobs/create-job.dto';
 import { PrismaService } from '@app/libs/core/database/prisma.service';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { RpcException } from '@nestjs/microservices';
 
 @Injectable()
