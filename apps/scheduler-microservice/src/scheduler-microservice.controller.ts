@@ -12,7 +12,7 @@ import { CreateJobDto } from '@app/libs/contracts/jobs/create-job.dto';
 import { ExceptionFilter } from '@app/libs/common/exception-filters/rpc-exception.filter';
 
 @Controller()
-
+@UseFilters(new ExceptionFilter())
 export class SchedulerMicroserviceController {
   constructor(
     private readonly schedulerMicroserviceService: SchedulerMicroserviceService,
@@ -28,7 +28,6 @@ export class SchedulerMicroserviceController {
   }
 
   @MessagePattern(JOB_PATTERNS.GET_ONE)
-  @UseFilters(new ExceptionFilter())
   getOneJob(@Payload() id: string) {
     return this.schedulerMicroserviceService.getOneJob(id);
   }

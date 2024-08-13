@@ -15,7 +15,6 @@ export class SchedulerMicroserviceService {
         next_run: job.scheduleDate ?? null,
       },
     });
-    console.log('new job recevied to process', job);
   }
 
   async getAllJobs() {

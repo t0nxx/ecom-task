@@ -3,6 +3,7 @@ import { SchedulerMicroserviceModule } from './scheduler-microservice.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { ConfigService } from '@nestjs/config';
 import { IAppConfig } from '@app/libs/core/config';
+import { SCHEDULER_MICROSERVICE_CONTRACT } from '@app/libs/contracts/microservices/scheduler-microservice';
 
 async function bootstrap() {
   // config cred
@@ -12,18 +13,23 @@ async function bootstrap() {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
     SchedulerMicroserviceModule,
     {
-      transport: Transport.MQTT,
+      transport: Transport.RMQ,
       options: {
-        url: 'mqtt://' + configService.get<IAppConfig['msgBroker']>('msgBroker')
-          .MQTT_BROKER_URL,
-        port: +configService.get<IAppConfig['msgBroker']>('msgBroker')
-          .MQTT_BROKER_PORT,
-        username:
-          configService.get<IAppConfig['msgBroker']>('msgBroker')
-            .MQTT_BROKER_USERNAME,
-        password:
-          configService.get<IAppConfig['msgBroker']>('msgBroker')
-            .MQTT_BROKER_PASSWORD,
+        queue: SCHEDULER_MICROSERVICE_CONTRACT.queue,
+        urls: [
+          'amqp://' +
+            configService.get<IAppConfig['msgBroker']>('msgBroker')
+              .RabbitMQ_USERNAME +
+            ':' +
+            configService.get<IAppConfig['msgBroker']>('msgBroker')
+              .RabbitMQ_PASSWORD +
+            '@' +
+            configService.get<IAppConfig['msgBroker']>('msgBroker')
+              .RabbitMQ_URL,
+        ],
+        queueOptions: {
+          durable: true,
+        },
       },
     },
   );
