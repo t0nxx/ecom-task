@@ -10,13 +10,14 @@ async function bootstrap() {
    * Swagger Documentation Config
    */
   const config = new DocumentBuilder()
-    .setTitle('ECOM TASK')
+    .setTitle('ECOM TASK API GATEWAY')
     .setDescription('The ECOM TASK')
     .setVersion('1.0')
-    .addTag('ECOM')
+    .addTag('ECOM API GATEWAY')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);
+  app.startAllMicroservices();
   await app.listen(3000);
 }
 bootstrap();
