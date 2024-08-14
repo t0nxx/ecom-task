@@ -57,3 +57,7 @@ $ npm run start:dev
 ```bash
 $ npm run start scheduler-microservice
 ```
+---
+**NOTE**
+  Please check docs folder for the idea
+---
