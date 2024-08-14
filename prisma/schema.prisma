@@ -14,11 +14,13 @@ generator client {
 }
 
 model Job {
-  id         String    @id @default(uuid())
-  name       String
-  queue      String    @default("default")
-  data       Json
-  created_at DateTime  @default(now())
-  last_run   DateTime?
-  next_run   DateTime?
+  id                  String    @id @default(uuid())
+  name                String
+  queue               String    @default("default")
+  data                Json
+  created_at          DateTime  @default(now())
+  last_run            DateTime?
+  next_run            DateTime?
+  interval_in_minutes Int?      @default(0)
+  status              String?   @default("PENDING")
 }

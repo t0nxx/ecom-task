@@ -22,6 +22,7 @@
     "db:seed": "npm run db:reset && npx ts-node prisma/seed.ts"
   },
   "dependencies": {
+    "@nestjs/bullmq": "^10.2.0",
     "@nestjs/cache-manager": "^2.2.2",
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^3.2.3",
@@ -32,6 +33,7 @@
     "@prisma/client": "^5.18.0",
     "amqp-connection-manager": "^4.1.14",
     "amqplib": "^0.10.4",
+    "bullmq": "^5.12.5",
     "cache-manager": "^5.7.6",
     "class-validator": "^0.14.1",
     "joi": "^17.13.3",

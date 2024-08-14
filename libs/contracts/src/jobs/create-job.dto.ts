@@ -2,6 +2,7 @@ import {
   IsISO8601,
   IsJSON,
   IsNotEmpty,
+  IsNumber,
   IsOptional,
   IsString,
   IsUUID,
@@ -17,8 +18,8 @@ export class CreateJobDto {
   data: object;
 
   @IsOptional()
-  @IsString()
-  queue: string = 'default';
+  @IsNumber()
+  interval_in_minutes: number = 0;
 
   @IsOptional()
   @IsISO8601({ strict: true })
