@@ -1,5 +1,12 @@
 # Ecom Task
 
+## Pre-requisites
+
+- NodeJS >= 18.18.2
+- PostgreSQL instance (database)
+- RabbitMQ instance (message broker)
+- Redis instance (queue/schedule jobs )
+
 ## Installation
 
 - open your terminal and follow this steps
@@ -35,18 +42,18 @@ $ npm install
 $ npm run db:reset
 ```
 
-- (optional) seed the database (prepared records)
-
-```bash
-$ npm run db:seed
-```
-
 ## Running the app
 
 ```bash
-# development
+# development (api gateway)
 $ npm run start:dev
 ```
 
-- visit swagger api doc in your browser 
-http://127.0.0.1:3003/docs
+- visit swagger api doc in your browser
+  http://127.0.0.1:3000/docs
+
+## Running the scheduler microservice
+
+```bash
+$ npm run start scheduler-microservice
+```
